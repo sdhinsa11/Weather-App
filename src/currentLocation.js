@@ -1,9 +1,3 @@
-//use static methods
-
-// use the IIFE module pattern to do this, which is where the projects will be stored
-// but we have our own class for the projects but call on it when we want to create it 
-// we 
-
 class Weather{
     // each weather object
     constructor(temp, feelslike, humidity, conditions, precip, uvindex, windspeed){
@@ -14,6 +8,7 @@ class Weather{
         this.precip = precip;
         this.uvindex = uvindex;
         this.windspeed = windspeed;
+        // this.dateTime = datetime;
     }
 }
 
@@ -26,7 +21,7 @@ var allDays = (function(){
     function addToDays(t, fL, h, c, p, uv, ws){
         allDays.push(new Weather(t, fL, h, c, p, uv, ws));
     }
-    
+
     function getDays(){
         return allDays;
     }
