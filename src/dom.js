@@ -11,13 +11,17 @@ function locationDisplay(place){
 function currentCondDisplay(dayforecast){
     const dateTime = document.querySelector("#dateTime");
     const tempConditions = document.querySelector("#tempConditions");
-    
+    const otherInformation = document.querySelector("#otherInformation");
 
     // get the object 
 
+    dateTime.innerHTML="";
+    tempConditions.innerHTML="";
+    otherInformation.innerHTML="";
+
     const dateTimeDiv = document.createElement("div");
-    dateTimeDiv.className = "dateTimeDiv";
-    dateTimeDiv.textContent = "Date/Time: 8:00";
+    dateTime.className="dTime";
+    dateTimeDiv.textContent = "8:00";
     dateTime.appendChild(dateTimeDiv);
 
     // temp and conditions 
@@ -35,8 +39,8 @@ function currentCondDisplay(dayforecast){
     createDivInformation("Feels Like", dayforecast.feelslike);
     createDivInformation("Humidity", dayforecast.humidity);
     createDivInformation("Precipitation", dayforecast.precip);
-    createDivInformation("UV Index", dayforecast.uvindex);
-    createDivInformation("Windspeed", dayforecast.windspeed);
+    createDivInformation("UVIndex", dayforecast.humidity);
+    createDivInformation("Humidity", dayforecast.humidity);
    
 
     // tempConditions.textContent = `Temperature: ${dayforecast.temp} || FeelsLike: ${dayforecast.feelslike} || Conditions: ${dayforecast.conditions}`;
@@ -49,8 +53,14 @@ function createDivInformation(title, info){
     
     const infoDiv = document.createElement("div");
     infoDiv.className="info";
-    infoDiv.h6 = `${title}`;
-    infoDiv.textContent = `${info}`;
+    const infoDivtitle = document.createElement("h6");
+    infoDivtitle.textContent = `${title}`;
+    
+    const infoDivinfo = document.createElement("p");
+    infoDivinfo.textContent=`${info}`;
+
+    infoDiv.appendChild(infoDivtitle);
+    infoDiv.appendChild(infoDivinfo);
     otherInformation.appendChild(infoDiv);
 }
 

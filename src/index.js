@@ -4,8 +4,6 @@ import {render} from './dom.js'
 
 // rendering everything
 
-function main(){
+document.addEventListener('DOMContentLoaded', () => {
     render();
-}
-
-main();
+});
