@@ -67,12 +67,29 @@ function createDivInformation(title, info){
 function dayDisplays(){
     // need to style it 
     const allDaysDivs = document.querySelector(".weeklyForecast");
+    
+    allDaysDivs.innerHTML="";
     const allofDays = allDays.getDays();
+
 
     allofDays.forEach((day)=>{
         // need to style and add a side bar that connects to it to show the extra information
         const dayDiv = document.createElement("div");
-        dayDiv.textContent = `Temp: ${day.temp} || Feelslike: ${day.feelslike} || Conditions: ${day.conditions} || Humidity: ${day.humidity} || Precipitation ${day.precip} || UV Index: ${day.uvindex} || Windspeed: ${day.windspeed} `;
+        dayDiv.className = "dayDiv";
+
+        const dayTemp = document.createElement("p");
+        dayTemp.textContent = `${day.temp}`;
+
+        const dayConditions = document.createElement("p");
+        dayConditions.textContent = `${day.conditions}`;
+
+        const seeMore = document.createElement("button");
+        seeMore.textContent= "...";
+        // dayDiv.textContent = `Temp: ${day.temp} || Feelslike: ${day.feelslike} || Conditions: ${day.conditions} || Humidity: ${day.humidity} || Precipitation ${day.precip} || UV Index: ${day.uvindex} || Windspeed: ${day.windspeed} `;
+        
+        dayDiv.appendChild(dayTemp);
+        dayDiv.appendChild(dayConditions);
+        dayDiv.appendChild(seeMore);
         allDaysDivs.appendChild(dayDiv);
     })
 
@@ -80,10 +97,10 @@ function dayDisplays(){
 
 async function render(){
     const searchLocation = document.getElementById("searchCity");
-
     searchLocation.addEventListener("click", async (event) =>{ // needs to be an async function or else the promise doesnt get handled properly
         event.preventDefault();
 
+        allDays.clearDays();
         // need to do some error handling
 
         const newL = document.getElementById("location").value;
@@ -98,7 +115,8 @@ async function render(){
 
         locationDisplay(weatherData.resolvedAddress);
         currentCondDisplay(currentConditions);
-        // dayDisplays();
+    
+        dayDisplays();
 
     });
 

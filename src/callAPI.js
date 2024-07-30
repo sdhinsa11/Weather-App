@@ -19,6 +19,7 @@ function currentWeather(weatherData){
 
 function weatherDays(weatherData){
     const days = weatherData.days.slice(0,7);
+   
     days.forEach((day) =>{ 
         // console.log(day.temp, day.feelslike, day.humidity, day.conditions, day.precip, day.uvindex, day.windspeed);
         allDays.addToDays(day.temp, day.feelslike, day.humidity, day.conditions, day.precip, day.uvindex, day.windspeed);

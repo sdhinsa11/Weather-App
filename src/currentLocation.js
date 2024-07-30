@@ -26,9 +26,14 @@ var allDays = (function(){
         return allDays;
     }
 
+    function clearDays(){
+        allDays=[];
+    }
+
     return{
         addToDays: addToDays,
         getDays:getDays,
+        clearDays: clearDays,
     };
 
 })();
