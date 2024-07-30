@@ -11,21 +11,56 @@ function locationDisplay(place){
 function currentCondDisplay(dayforecast){
     const dateTime = document.querySelector("#dateTime");
     const tempConditions = document.querySelector("#tempConditions");
-    const otherInformation = document.querySelector("#otherInformation");
+    
 
     // get the object 
 
-    dateTime.textContent = "8:00";
-    tempConditions.textContent = `Temperature: ${dayforecast.temp} || FeelsLike: ${dayforecast.feelslike} || Conditions: ${dayforecast.conditions}`;
-    otherInformation.textContent = `Humidity: ${dayforecast.humidity} || Precipitation ${dayforecast.precip} || UV Index: ${dayforecast.uvindex} || Windspeed: ${dayforecast.windspeed}`;
+    const dateTimeDiv = document.createElement("div");
+    dateTimeDiv.className = "dateTimeDiv";
+    dateTimeDiv.textContent = "Date/Time: 8:00";
+    dateTime.appendChild(dateTimeDiv);
+
+    // temp and conditions 
+    const temp = document.createElement("div");
+    temp.className = "temp";
+    temp.textContent = `${dayforecast.temp}`;
+    tempConditions.appendChild(temp);
+
+    const conditions = document.createElement("div");
+    conditions.className = "cond";
+    conditions.textContent =`${dayforecast.conditions}`;
+    tempConditions.appendChild(conditions)
+
+    // other information
+    createDivInformation("Feels Like", dayforecast.feelslike);
+    createDivInformation("Humidity", dayforecast.humidity);
+    createDivInformation("Precipitation", dayforecast.precip);
+    createDivInformation("UV Index", dayforecast.uvindex);
+    createDivInformation("Windspeed", dayforecast.windspeed);
+   
+
+    // tempConditions.textContent = `Temperature: ${dayforecast.temp} || FeelsLike: ${dayforecast.feelslike} || Conditions: ${dayforecast.conditions}`;
+    // otherInformation.textContent = `Humidity: ${dayforecast.humidity} || Precipitation ${dayforecast.precip} || UV Index: ${dayforecast.uvindex} || Windspeed: ${dayforecast.windspeed}`;
 
 }
 
+function createDivInformation(title, info){
+    const otherInformation = document.querySelector("#otherInformation");
+    
+    const infoDiv = document.createElement("div");
+    infoDiv.className="info";
+    infoDiv.h6 = `${title}`;
+    infoDiv.textContent = `${info}`;
+    otherInformation.appendChild(infoDiv);
+}
+
 function dayDisplays(){
+    // need to style it 
     const allDaysDivs = document.querySelector(".weeklyForecast");
     const allofDays = allDays.getDays();
 
     allofDays.forEach((day)=>{
+        // need to style and add a side bar that connects to it to show the extra information
         const dayDiv = document.createElement("div");
         dayDiv.textContent = `Temp: ${day.temp} || Feelslike: ${day.feelslike} || Conditions: ${day.conditions} || Humidity: ${day.humidity} || Precipitation ${day.precip} || UV Index: ${day.uvindex} || Windspeed: ${day.windspeed} `;
         allDaysDivs.appendChild(dayDiv);
@@ -53,7 +88,7 @@ async function render(){
 
         locationDisplay(weatherData.resolvedAddress);
         currentCondDisplay(currentConditions);
-        dayDisplays();
+        // dayDisplays();
 
     });
 

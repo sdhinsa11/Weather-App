@@ -63,19 +63,57 @@ h1{
 #mainContent{
     display: grid;
     grid-template-rows: 1rem 3rem;
+    gap: 5rem;
+    margin-top: 90px;
+
 }
 
 #title{
     margin: auto;
-    margin-top: 70px;
-    border: 1px solid pink;
     font-size: 40px;
     font-weight: bold;
     padding: 15px;
 }
 
-.conditions{
-    border: 2px solid orange;
+
+.conditions {
+    margin: auto;
+    width: 600px;
+    padding: 10px;
+    border: 1px solid pink; 
+    background-color: #2b235a;
+    /* grid-row: 2 ; Places the conditions in the second row */
+}
+
+.dateTimeDiv{
+    color: white;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#tempConditions{
+    display: flex;
+    color: white;
+    justify-content: center;
+    gap: 250px;
+    margin-bottom: 10px;
+}
+
+.temp{
+    font-size: 40px;
+}
+
+.cond{
+    font-size: 40px;
+}
+
+#otherInformation{
+    display:flex;
+    height: 100px;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 20px; */
 }
 
 
