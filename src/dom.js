@@ -39,8 +39,17 @@ function currentCondDisplay(dayforecast,type = "C"){
     const conditions = document.createElement("div");
     conditions.className = "cond";
     conditions.textContent =`${dayforecast.conditions}`;
-    tempConditions.appendChild(conditions)
 
+    const cond_pic = document.createElement("img");
+    cond_pic.id="weather-icon";
+    cond_pic.alt="Weather Icon";
+
+    const iconPath = require(`./icons/${dayforecast.icon}.png`);
+    cond_pic.src = iconPath;
+
+    tempConditions.appendChild(conditions);
+    tempConditions.appendChild(cond_pic);
+    
     // other information
     if (type === "C"){
         createDivInformation("Feels Like", dayforecast.feelslikec);
