@@ -100,15 +100,63 @@ function dayDisplays(type="C"){
         dayConditions.textContent = `${day.conditions}`;
 
         const seeMore = document.createElement("button");
+        seeMore.className = "seeMore";
         seeMore.textContent= "...";
         // dayDiv.textContent = `Temp: ${day.temp} || Feelslike: ${day.feelslike} || Conditions: ${day.conditions} || Humidity: ${day.humidity} || Precipitation ${day.precip} || UV Index: ${day.uvindex} || Windspeed: ${day.windspeed} `;
         
+        const otherInfo = document.createElement("div");
+        otherInfo.className="popup";
+        let info;
+
+        if (type==="C"){
+            info = `
+            <p>Feels Like: ${day.feelslikec}°C</p>
+            <p>Humidity: 50%</p>
+            <p>Precipitation: 0%</p>
+            <p>UV Index: 5</p>
+            <p>Windspeed: 10 km/h</p>
+            <button class="close">Close</button>
+            `;
+        }
+        else if (type==="F"){
+            info = `
+            <p>Feels Like: ${day.feelslikef}°F</p>
+            <p>Humidity: ${day.humidity}%</p>
+            <p>Precipitation: ${day.precip}%</p>
+            <p>UV Index: ${day.uvindex}</p>
+            <p>Windspeed: ${day.windspeed}km/h</p>
+            <button class="close">Close</button>
+            `;
+        }
+
+        otherInfo.innerHTML=info;
+
+        const closeButton = otherInfo.querySelector(".close");
+        closeButton.addEventListener("click", ()=>{
+            otherInfo.classList.remove("active");
+        });
+
+
+
         dayDiv.appendChild(dayTemp);
         dayDiv.appendChild(dayConditions);
         dayDiv.appendChild(seeMore);
+        dayDiv.appendChild(otherInfo);
         allDaysDivs.appendChild(dayDiv);
-    })
+    });
 
+}
+
+function showDayInformation(){
+    let card = document.querySelectorAll(".seeMore");
+
+    card.forEach(button =>{
+        button.addEventListener('click', (event) =>{
+            const dayDiv = event.target.closest('.dayDiv');
+            let popup = dayDiv.querySelector(".popup");
+            popup.classList.toggle('active');
+        });
+    });
 }
 
 async function render(){
@@ -143,6 +191,7 @@ async function render(){
         currentCondDisplay(currentConditions); // uses default
     
         dayDisplays();
+        showDayInformation();
 
 
     });
@@ -151,6 +200,7 @@ async function render(){
     celsius.addEventListener("click", async () =>{
         currentCondDisplay(weatherD,"C");
         dayDisplays("C");
+        showDayInformation();
 
     });
 
@@ -158,6 +208,7 @@ async function render(){
     farenheit.addEventListener("click", async () =>{
         currentCondDisplay(weatherD,"F");
         dayDisplays("F");
+        showDayInformation();
 
     });
 
