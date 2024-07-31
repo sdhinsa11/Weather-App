@@ -1,6 +1,7 @@
 class Weather{
     // each weather object
-    constructor(temp, feelslike, humidity, conditions, precip, uvindex, windspeed, icon){
+    constructor(datetime, temp, feelslike, humidity, conditions, precip, uvindex, windspeed, icon){
+        this.datet = datetime;
         this.tempf = temp;
         this.tempc = Math.round(((temp - 32) *(5/9)) * 10) / 10;
         this.feelslikef = feelslike;
@@ -22,8 +23,8 @@ var allDays = (function(){
 
     let allDays = [];
 
-    function addToDays(t, fL, h, c, p, uv, ws, ic){
-        allDays.push(new Weather(t, fL, h, c, p, uv, ws, ic));
+    function addToDays(dt, t, fL, h, c, p, uv, ws, ic){
+        allDays.push(new Weather(dt, t, fL, h, c, p, uv, ws, ic));
     }
 
     function getDays(){

@@ -21,7 +21,8 @@ function currentCondDisplay(dayforecast,type = "C"){
 
     const dateTimeDiv = document.createElement("div");
     dateTime.className="dTime";
-    dateTimeDiv.textContent = "8:00";
+    
+    dateTimeDiv.textContent = `${dayforecast.datet}`;
     dateTime.appendChild(dateTimeDiv);
 
     // temp and conditions 
@@ -108,6 +109,14 @@ function dayDisplays(type="C"){
         const dayConditions = document.createElement("p");
         dayConditions.textContent = `${day.conditions}`;
 
+        const imgConditions = document.createElement("img");
+        imgConditions.id = "weatherIcon";
+        imgConditions.alt = "Weather Icon";
+
+        const iconPath = require(`./icons/${day.icon}.png`);
+        imgConditions.src = iconPath;
+
+
         const seeMore = document.createElement("button");
         seeMore.className = "seeMore";
         seeMore.textContent= "...";
@@ -149,6 +158,7 @@ function dayDisplays(type="C"){
 
         dayDiv.appendChild(dayTemp);
         dayDiv.appendChild(dayConditions);
+        dayDiv.appendChild(imgConditions);
         dayDiv.appendChild(seeMore);
         dayDiv.appendChild(otherInfo);
         allDaysDivs.appendChild(dayDiv);
