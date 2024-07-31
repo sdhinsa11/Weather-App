@@ -5,10 +5,10 @@ async function getData(location){
     // gets the data 
 
     // test API better 
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=C3TGJCXMW6NQNT3RJWLU8ZJ4B&include=days,hours,current&elements=temp,precip,feelslike,humidity,conditions,uvindex,windspeed`,  {mode: 'cors'});
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=C3TGJCXMW6NQNT3RJWLU8ZJ4B&include=hours,days,current&elements=temp,precip,feelslike,humidity,conditions,uvindex,windspeed`,  {mode: 'cors'});
     const weatherData = await response.json();
     return weatherData;
-    // console.log(weatherData);
+    
 
 }
 

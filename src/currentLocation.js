@@ -1,13 +1,16 @@
 class Weather{
     // each weather object
     constructor(temp, feelslike, humidity, conditions, precip, uvindex, windspeed){
-        this.temp = temp;
-        this.feelslike = feelslike;
+        this.tempf = temp;
+        this.tempc = Math.round(((temp - 32) *(5/9)) * 10) / 10;
+        this.feelslikef = feelslike;
+        this.feelslikec = Math.round(((feelslike - 32) *(5/9)) * 10) / 10
         this.humidity = humidity;
         this.conditions = conditions;
         this.precip = precip;
         this.uvindex = uvindex;
         this.windspeed = windspeed;
+
         // this.dateTime = datetime;
     }
 }

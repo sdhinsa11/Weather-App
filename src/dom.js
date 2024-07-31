@@ -8,7 +8,7 @@ function locationDisplay(place){
 
 }
 
-function currentCondDisplay(dayforecast){
+function currentCondDisplay(dayforecast,type = "C"){
     const dateTime = document.querySelector("#dateTime");
     const tempConditions = document.querySelector("#tempConditions");
     const otherInformation = document.querySelector("#otherInformation");
@@ -27,7 +27,13 @@ function currentCondDisplay(dayforecast){
     // temp and conditions 
     const temp = document.createElement("div");
     temp.className = "temp";
-    temp.textContent = `${dayforecast.temp}`;
+    if(type==="C"){
+        temp.textContent = `${dayforecast.tempc}°C`;
+    }
+    else if(type==="F"){
+        temp.textContent = `${dayforecast.tempf}°F`;
+
+    }
     tempConditions.appendChild(temp);
 
     const conditions = document.createElement("div");
@@ -36,11 +42,16 @@ function currentCondDisplay(dayforecast){
     tempConditions.appendChild(conditions)
 
     // other information
-    createDivInformation("Feels Like", dayforecast.feelslike);
+    if (type === "C"){
+        createDivInformation("Feels Like", dayforecast.feelslikec);
+    }
+    else if(type==="F"){
+        createDivInformation("Feels Like", dayforecast.feelslikef);
+    }
     createDivInformation("Humidity", dayforecast.humidity);
-    createDivInformation("Precipitation", dayforecast.precip);
-    createDivInformation("UVIndex", dayforecast.humidity);
-    createDivInformation("Humidity", dayforecast.humidity);
+    createDivInformation("Precipitation %", dayforecast.precip);
+    createDivInformation("UVIndex", dayforecast.uvindex);
+    createDivInformation("Windspeed", dayforecast.windspeed);
    
 
     // tempConditions.textContent = `Temperature: ${dayforecast.temp} || FeelsLike: ${dayforecast.feelslike} || Conditions: ${dayforecast.conditions}`;
@@ -64,7 +75,7 @@ function createDivInformation(title, info){
     otherInformation.appendChild(infoDiv);
 }
 
-function dayDisplays(){
+function dayDisplays(type="C"){
     // need to style it 
     const allDaysDivs = document.querySelector(".weeklyForecast");
     
@@ -78,7 +89,12 @@ function dayDisplays(){
         dayDiv.className = "dayDiv";
 
         const dayTemp = document.createElement("p");
-        dayTemp.textContent = `${day.temp}`;
+        if (type === "C"){
+            dayTemp.textContent = `${day.tempc}°C`;
+        }
+        else if (type === "F"){
+            dayTemp.textContent = `${day.tempf}°F`;
+        }
 
         const dayConditions = document.createElement("p");
         dayConditions.textContent = `${day.conditions}`;
@@ -97,6 +113,12 @@ function dayDisplays(){
 
 async function render(){
     const searchLocation = document.getElementById("searchCity");
+
+    let weatherD;
+
+    // create instances over here to grab for the celsius and farenheit to access outside
+
+
     searchLocation.addEventListener("click", async (event) =>{ // needs to be an async function or else the promise doesnt get handled properly
         event.preventDefault();
 
@@ -108,20 +130,42 @@ async function render(){
 
         const weatherData = await getData(newLocation);
 
-        // get information for the days
+        // get information for the current day
         const currentConditions = currentWeather(weatherData);
-        // console.log(currentConditions);
+        weatherD = currentWeather(weatherData);
+
+        // getting information for the next 7 days
         weatherDays(weatherData);
 
+
+        // displaying all the information
         locationDisplay(weatherData.resolvedAddress);
-        currentCondDisplay(currentConditions);
+        currentCondDisplay(currentConditions); // uses default
     
         dayDisplays();
+
+
+    });
+
+    const celsius = document.getElementById("celsius");
+    celsius.addEventListener("click", async () =>{
+        currentCondDisplay(weatherD,"C");
+        dayDisplays("C");
+
+    });
+
+    const farenheit = document.getElementById("farenheit");
+    farenheit.addEventListener("click", async () =>{
+        currentCondDisplay(weatherD,"F");
+        dayDisplays("F");
 
     });
 
     
 }
+
+    
+
 
 // function to display the title 
 
