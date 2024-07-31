@@ -128,11 +128,11 @@ function dayDisplays(type="C"){
 
         if (type==="C"){
             info = `
-            <p>Feels Like: ${day.feelslikec}°C</p>
-            <p>Humidity: 50%</p>
-            <p>Precipitation: 0%</p>
-            <p>UV Index: 5</p>
-            <p>Windspeed: 10 km/h</p>
+            <p>Feels Like: ${day.feelslikec}°F</p>
+            <p>Humidity: ${day.humidity}%</p>
+            <p>Precipitation: ${day.precip}%</p>
+            <p>UV Index: ${day.uvindex}</p>
+            <p>Windspeed: ${day.windspeed}km/h</p>
             <button class="close">Close</button>
             `;
         }

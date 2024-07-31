@@ -2,31 +2,42 @@
     margin:0;
 }
 
+body{
+    background-color: #b0cce7;
+}
+
 
 /* HEADER */
 #beginning{
     display: grid;
-    grid-template-columns: 700px 1fr 1fr;
+    grid-template-columns: 600px 1fr;
     grid-template-rows: auto;
-    background-color:#75b4e3;
-    gap: 20px;
+    background-color:#2b235a;
     padding: 20px;
-    justify-items: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    width: 100%;
-
+    width: 100vw;
 }
 
-h1{
-    margin:0;
+.head{
     text-align: center;
-    
+    margin-top: 20px;
+    color: white;
+}
+
+.otherHalf{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#farenheit{
+    margin-top: 9px;
 }
 
 .wrapper{
     width: 200px;
     position: relative;
-    margin: 10px;
+    /* margin: 10px; */
     padding-left: 30px;
 }
 
@@ -45,7 +56,7 @@ h1{
     width: 20px; /* Ensure the button is square */
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 40%;
     transform: translateY(-5%);
     border: none; /* Optional: remove border if needed */
     cursor: pointer; /* Optional: add cursor pointer */
@@ -53,8 +64,8 @@ h1{
 
 #search{
     display: flex;
-    padding-top:18px;
-    margin: 10px;
+    padding-top:10px;
+    margin: 10px; 
     padding-left: 30px;
 }
 
@@ -86,9 +97,9 @@ h1{
 
 .conditions {
     margin: auto;
-    width: 600px;
+    width: 800px;
     padding: 10px;
-    background-color: #2b235a;
+    background-color: #a497e9;
     /* grid-row: 2 ; Places the conditions in the second row */
 }
 
@@ -102,8 +113,9 @@ h1{
 #tempConditions{
     display: flex;
     color: white;
-    justify-content: center;
-    gap: 200px;
+    /* justify-content: space-between; */
+    gap: 50px;
+    margin-left: 30px;
     margin-bottom: 10px;
 }
 
@@ -113,6 +125,12 @@ h1{
 
 .cond{
     font-size: 40px;
+    margin-left: 80px;
+}
+
+#weather-icon{
+    margin-left: 80px;
+
 }
 
 #otherInformation{
@@ -140,21 +158,26 @@ h1{
 .weeklyForecast > div {
     width: 300px; /* Set a fixed width to ensure items are properly sized */
     height: 200px; /* Adjust height as needed */
-    background-color: #f0f0f0;
+    background-color: #5d80b1;
     border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    display: grid;
+    grid-template-columns: 40px 40px;
+    grid-template-rows: 40px 40px;
+    
+    gap: 50px;
 }
+
+
 
 
 .popup{
     display: none;
     position: absolute;
-    bottom: 80%;
+    width: 150px;
+    top: 80%;
     left: 0;
     background-color: #2b235a;
+    color: white;
     border: 1px solid white;
     padding: 10px;
 }
